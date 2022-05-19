@@ -1,16 +1,22 @@
 const express = require('express')
 const { urlencoded } = require('body-parser')
+const dotenv = require('dotenv').config()
+const connectDB = require('./config/db')
+const color = require('colors')
+const port = process.env.PORT || 6000
+const { errorHandler } = require('./middleware/errorMiddleware')
+ 
 
-
+connectDB()
 const app = express()
-app.use(urlencoded({extended:false}))
-
-const port = process.env.PORT  || 9000
 
 app.use(express.json())
+app.use(urlencoded({extended:false}))
 
 
 app.use('/api', require('./routes/cartRoutes'))
+
+app.use(errorHandler )
 
 
 app.listen(port, () => {
