@@ -15,6 +15,7 @@ app.use(urlencoded({extended:false}))
 
 
 app.use('/api', require('./routes/cartRoutes'))
+app.use('/user', require('./routes/userRoutes'))
 
 app.use(errorHandler )
 

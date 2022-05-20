@@ -1,8 +1,13 @@
 const mongooose = require('mongoose')
-const number = require('mongoose/lib/cast/number')
 
-const feedBackSchema = mongooose.Schema(
+
+const cartSchema = mongooose.Schema(
     {
+        user:{
+            type:mongooose.Schema.Types.ObjectId,
+            required:true,
+            ref: "User"
+        },
         name:{
             type:String,
             required:[true, "Please add a text value"]
@@ -21,4 +26,4 @@ const feedBackSchema = mongooose.Schema(
     }
 )
 
-module.exports = mongooose.model('Feedback',feedBackSchema)
+module.exports = mongooose.model('Cart',cartSchema)
