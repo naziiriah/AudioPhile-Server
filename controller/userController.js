@@ -70,11 +70,13 @@ const authenticateUser = asyncHandler( async(req, res) => {
 })
 
 const userProfile = asyncHandler( async(req, res) => {
+const {_id, email, name} = await User.findById(req.user.id)
 
-    res.status(200).json({
-        message:true
-    })
-
+res.status(200).json({
+    id:_id,
+    name,
+    email
+})
 })
 
 const generateToken = (id) => {

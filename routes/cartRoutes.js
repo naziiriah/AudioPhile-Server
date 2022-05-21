@@ -7,10 +7,11 @@ editItem,
 EmptyCart,
 removeItem
 } = require('../controller/cartController')
+const {protect} = require('../middleware/authMiddleware')
 
-Router.route('/').get(getCart).post(addItem).delete(EmptyCart)
+Router.route('/').get(protect,getCart).post(protect,addItem).delete(EmptyCart)
 
-Router.route('/:id').delete(removeItem).put(editItem)
+Router.route('/:id').delete(protect,removeItem).put(protect,editItem)
 
 module.exports = Router
 
